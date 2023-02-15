@@ -1,0 +1,308 @@
+<p>安装VS Code、部署MinGW</p>
+<ol>
+<li><p>这里安装VS Code不再赘述，安装到任意目录即可（但不要存在中文！！！）</p></li>
+<li><p>解压MinGW到任意目录（但不要存在中文！！！）</p></li>
+<li>
+<p>配置MinGW环境变量</p>
+<p>将MinGW的bin目录配置到Path</p>
+<p>此电脑—&gt;属性—&gt;高级系统设置—&gt;环境变量—&gt;编辑Path</p>
+<p>添加{你的盘符(目录)}\mingw64\bin (如图)</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 391px; max-height: 44px;">
+<div class="image-container-fill" style="padding-bottom: 11.25%;"></div>
+<div class="image-view" data-width="391" data-height="44"><img data-original-src="//upload-images.jianshu.io/upload_images/22459192-f65ccb3b6e08f9db.png" data-original-width="391" data-original-height="44" data-original-format="image/png" data-original-filesize="2703"></div>
+</div>
+<div class="image-caption">image</div>
+</div>
+<p>并检查VS Code路径是否存在</p>
+</li>
+</ol>
+</li>
+<li>
+<p>安装C/CPP插件</p>
+<ol>
+<li>打开VS Code，在插件市场中搜索C/C++并点击install安装(如图)</li>
+</ol>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 298px;">
+<div class="image-container-fill" style="padding-bottom: 36.7%;"></div>
+<div class="image-view" data-width="812" data-height="298"><img data-original-src="//upload-images.jianshu.io/upload_images/22459192-ed628d9b2baa354e.png" data-original-width="812" data-original-height="298" data-original-format="image/png" data-original-filesize="52217"></div>
+</div>
+<div class="image-caption">image</div>
+</div>
+<ol start="2">
+<li>重启VS Code</li>
+</ol>
+</li>
+<li>
+<p>编辑配置文件</p>
+<ol>
+<li>
+<p>创建一个工作目录并在VS Code中打开</p>
+<p>文件—&gt;打开文件夹(如图)</p>
+</li>
+</ol>
+<div class="image-package">
+<div class="image-container" style="max-width: 610px; max-height: 331px;">
+<div class="image-container-fill" style="padding-bottom: 54.26%;"></div>
+<div class="image-view" data-width="610" data-height="331"><img data-original-src="//upload-images.jianshu.io/upload_images/22459192-c0abad14b881536a.png" data-original-width="610" data-original-height="331" data-original-format="image/png" data-original-filesize="23485"></div>
+</div>
+<div class="image-caption">image</div>
+</div>
+<ol start="2">
+<li>创建一个.cpp文件(如图)</li>
+</ol>
+<div class="image-package">
+<div class="image-container" style="max-width: 614px; max-height: 344px;">
+<div class="image-container-fill" style="padding-bottom: 56.03%;"></div>
+<div class="image-view" data-width="614" data-height="344"><img data-original-src="//upload-images.jianshu.io/upload_images/22459192-d262c1a55fb18716.png" data-original-width="614" data-original-height="344" data-original-format="image/png" data-original-filesize="25292"></div>
+</div>
+<div class="image-caption">image-20200319161047123.png</div>
+</div>
+<ol start="3">
+<li>
+<p>进行调试(快捷键F5)</p>
+<p>选择C++(GDB/LLDB)—&gt;g++.exe build and debug active file</p>
+</li>
+<li>
+<p>编辑自动创建的launch.json文件</p>
+<p>1.修改"externalConsole"为true</p>
+<p>2.修改"preLaunchTask"为 "c/cpp task"</p>
+<p>这里给出完整配置文件可对照修改</p>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code>         {
+          // 使用 IntelliSense 了解相关属性。 
+          // 悬停以查看现有属性的描述。
+          // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+          "version": "0.2.0",
+          "configurations": [
+          {
+            "name": "g++.exe build and debug active file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:\\mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+          {
+            "description": "为 gdb 启用整齐打印",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+          ],
+            "preLaunchTask": "c/cpp task"
+          }
+          ]
+         }
+</code></pre>
+<ol start="5">
+<li>
+<p>进行调试(快捷键F5)—&gt;配置任务—&gt;g++.exe build and debug active file</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 442px; max-height: 205px;">
+<div class="image-container-fill" style="padding-bottom: 46.379999999999995%;"></div>
+<div class="image-view" data-width="442" data-height="205"><img data-original-src="//upload-images.jianshu.io/upload_images/22459192-5a74c28415499352.png" data-original-width="442" data-original-height="205" data-original-format="image/png" data-original-filesize="7360"></div>
+</div>
+<div class="image-caption">image</div>
+</div>
+</li>
+</ol>
+<ul>
+<li>
+<p>编辑弹出的task.json</p>
+<p>修改"label"为 "c/cpp task"</p>
+<p>这里给出完整配置文件可对照修改</p>
+</li>
+</ul>
+<pre><code>     {
+     // 有关 tasks.json 格式的文档，请参见
+      // https://go.microsoft.com/fwlink/?LinkId=733558
+      "version": "2.0.0",
+      "tasks": [
+      {
+        "type": "shell",
+        "label": "c/cpp task",
+        "command": "D:\\mingw64\\bin\\g++.exe",
+        "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "options": {
+      "cwd": "D:\\mingw64\\bin"
+      },
+      "problemMatcher": [
+      "$gcc"
+      ],
+      "group": "build"
+      }
+      ]
+     }
+</code></pre>
+<ul>
+<li>至此环境搭建完成</li>
+</ul>
+<h3>二、解决终端自动闪退</h3>
+<ul>
+<li>
+<p>打开launch.json文件</p>
+<ol>
+<li><p>修改"program"为 "C:\Windows\system32\cmd.exe"</p></li>
+<li><p>"args": ["/C","<img class="math-inline" src="https://math.jianshu.com/math?formula=%7BfileDirname%7D%5C" alt="{fileDirname}\" mathimg="1">{fileBasenameNoExtension}.exe","&amp;","pause"] 此行因markdown语法显示错误，请关注下方<br>
+这里给出完整配置文件可对照修改</p></li>
+</ol>
+</li>
+</ul>
+<pre><code>         {
+          // 使用 IntelliSense 了解相关属性。 
+          // 悬停以查看现有属性的描述。
+          // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+          "version": "0.2.0",
+          "configurations": [ 
+
+          {
+            "name": "g++.exe build and debug active file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "C:\\Windows\\system32\\cmd.exe",
+            "args": ["/C","${fileDirname}\\${fileBasenameNoExtension}.exe","&amp;","pause"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:\\mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+          {
+            "description": "为 gdb 启用整齐打印",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+          ],
+            "preLaunchTask": "LaunchTask g++"
+          }
+          ]
+         
+         }
+</code></pre>
+<ul>
+<li>若你配置正确，现在终端将在程序执行完毕后暂停（即不会闪退）</li>
+</ul>
+<h3>三、解决无法调试</h3>
+<ul>
+<li>
+<p>配置launch.json</p>
+<p>这里直接给出配置文件，不做赘述，直接按照下文配置即可</p>
+</li>
+</ul>
+<pre><code> {
+      // 使用 IntelliSense 了解相关属性。 
+      // 悬停以查看现有属性的描述。
+      // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+      "version": "0.2.0",
+      "configurations": [
+      {
+        "name": "g++.exe build and debug active file",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "C:\\Windows\\system32\\cmd.exe",
+        "args": ["/C","${fileDirname}\\${fileBasenameNoExtension}.exe","&amp;","pause"],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "externalConsole": true,
+        "MIMode": "gdb",
+        "miDebuggerPath": "D:\\mingw64\\bin\\gdb.exe",
+        "setupCommands": [
+      {
+        "description": "为 gdb 启用整齐打印",
+        "text": "-enable-pretty-printing",
+        "ignoreFailures": true
+      }
+      ],
+      "preLaunchTask": "c/cpp task"
+      },
+
+      {
+        "name": "debug",
+        "type": "cppdbg",
+       "request": "launch",
+        "program": "${workspaceFolder}/${fileBasenameNoExtension}.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "externalConsole": true,
+        "MIMode": "gdb",
+        "miDebuggerPath": "D:\\mingw64\\bin\\gdb.exe",
+        "setupCommands": [
+      {
+        "description": "Enable pretty-printing for gdb",
+        "text": "-enable-pretty-printing",
+        "ignoreFailures": false
+      }
+      ],
+        "preLaunchTask": "c/cpp task"
+      }
+      ]
+     }
+</code></pre>
+<ul>
+<li>
+<p>配置tesk.json</p>
+<p>这里直接给出配置文件，不做赘述，直接按照下文配置即可</p>
+</li>
+</ul>
+<pre><code>    {
+     // 有关 tasks.json 格式的文档，请参见
+      // https://go.microsoft.com/fwlink/?LinkId=733558
+      "version": "2.0.0",
+      "tasks": [
+      {
+        "type": "shell",
+        "label": "c/cpp task",
+        "command": "D:\\mingw64\\bin\\g++.exe",
+        "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+        "options": {
+        "cwd": "D:\\mingw64\\bin"
+      },
+        "problemMatcher": [
+        "$gcc"
+      ],
+        "group": "build"
+      },
+
+      {
+        "type": "shell",
+        "label": "c/cpp task",
+        "command": "D:\\mingw64\\bin\\g++.exe",
+        "args": [
+        "-o",
+        "${fileBasenameNoExtension}",
+        "${file}"
+      ],
+        "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+      }
+      ]
+     }
+</code></pre>
+<ul>
+<li>
+<p>在运行和调试中选择debug(很重要！千万不要忽略。)</p>
